@@ -1,0 +1,195 @@
+{
+	"info": {
+		"_postman_id": "e5e67511-403c-46b1-968b-e1af87ade087",
+		"name": "Linnworks API Reference",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "AuthorizeByApplication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eb63c308-007c-48de-9716-377cd0df5e8c",
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"if (jsonData.Server !== undefined) {",
+									"    postman.setEnvironmentVariable(\"server\", jsonData.Server);",
+									"}",
+									"if (jsonData.Token !== undefined) {",
+									"    postman.setEnvironmentVariable(\"token\", jsonData.Token);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "applicationId",
+									"value": "{{applicationId}}",
+									"type": "text"
+								},
+								{
+									"key": "applicationSecret",
+									"value": "{{applicationSecret}}",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "{{installation_token}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.linnworks.net//api/Auth/AuthorizeByApplication",
+							"protocol": "https",
+							"host": [
+								"api",
+								"linnworks",
+								"net"
+							],
+							"path": [
+								"",
+								"api",
+								"Auth",
+								"AuthorizeByApplication"
+							]
+						},
+						"description": "Generates a sesssion and provide Authorization Token and server in response."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inventory",
+			"item": [
+				{
+					"name": "GetInventoryItemsCount",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{server}}/api/Inventory/GetInventoryItemsCount",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"Inventory",
+								"GetInventoryItemsCount"
+							]
+						},
+						"description": "Use this call to get total items count"
+					},
+					"response": []
+				},
+				{
+					"name": "GetInventoryItemById",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "{{stockItemId}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{server}}/api/Inventory/GetInventoryItemById",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"Inventory",
+								"GetInventoryItemById"
+							]
+						},
+						"description": "Use this call to get all product details"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "dd5ff531-4d0f-4df2-934f-4e39197599ce",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4e3f0c58-944a-4676-86ba-321985ef29bd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "65e4a8f0-bd5c-421c-b24a-ef72d1054707",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "2e6ddde8-1a47-436c-b875-bc7cc3fb8912",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
